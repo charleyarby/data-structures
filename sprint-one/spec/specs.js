@@ -87,7 +87,7 @@ define([
       });
     });
 
-  });
+   });
 
   describe('queue', function() {
     var queue;
