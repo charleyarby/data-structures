@@ -19,16 +19,6 @@ var LinkedList = function() {
     return list.tail;
   };
 
-  // list.addToTail = function(value) {
-  //   var node = new Node(list.tail);
-  //   if (list.head === null) {
-  //     list.head = node;
-  //   }
-  //   Node(value);
-
-  //   list.tail = value;
-  //   return list.tail
-  // };
 
   list.removeHead = function() {
     var temp = list.head
