@@ -10,18 +10,72 @@
 // Usage:
 //   limitedArray.set(3, 'hi');
 //   limitedArray.get(3); // returns 'hi'
+/*
 
-var LimitedArray = function(limit) {
-  var storage = [];
-
-  var limitedArray = {};
-  limitedArray.get = function(index) {
+  limitedArray.get = function(index, key) {
     checkLimit(index);
+    for(var i=0; storage[index].length; i++){
+      if(storage[index][i] === key){
+        return storage[index]
+      }
+    }
     return storage[index];
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
-    storage[index] = value;
+    storage[index].push(value);
+
+  };
+  limitedArray.each = function(callback) {
+    console.log('here is each')
+    for (var i = 0; i < storage.length; i++) {
+      callback(storage[i], i, storage);
+    }
+  };
+
+  var checkLimit = function(index) {
+    if (typeof index !== 'number') {
+      throw new Error('setter requires a numeric index for its first argument');
+    }
+    if (limit <= index) {
+      throw new Error('Error trying to access an over-the-limit index');
+    }
+  };
+
+  return limitedArray;
+};
+
+ ********** NOTE: **********
+ * Do not edit this code unless you see a bug!
+ */
+
+
+// This class represents an array with limited functionality and a maximum size.
+// It will ensure that you don't accidentally try to use up too much space.
+//
+// Usage:
+//   limitedArray.set(3, 'hi');
+//   limitedArray.get(3); // returns 'hi'
+
+var LimitedArray = function(limit) {
+  var storage = [];
+  for(var i=0; i<limit; i++){
+    storage[i]=[]
+  }
+  var limitedArray = {};
+  limitedArray.get = function(index, key) {
+    checkLimit(index);
+    for(var i=0; i < storage[index].length; i++){
+      if(storage[index][i] === key){
+        return storage[index][i]
+      }
+    }
+    //return storage[index];
+  };
+  limitedArray.set = function(index, value) {
+    checkLimit(index);
+    storage[index].push(value);
+
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {

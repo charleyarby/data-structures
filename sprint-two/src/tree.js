@@ -13,7 +13,7 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   var istrue = false;
-  var node = new Tree(value);
+  var node =  Tree(value);
     this.children.push(node);
 
 };
