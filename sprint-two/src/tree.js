@@ -22,19 +22,16 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
   var istrue=false;
-  istrue = false;
   if (this.value === target) {istrue=true};
   function findChild(branch){
     for (var j = 0; j < branch.children.length; j++) {
-      console.log("here")
-      console.log(branch)
 
       if(branch.child ){
-        console.log(branch.child + 'length of branch child')
+
         findChild(this.child)
       }
       if (branch.value === target) {istrue = true;}
-      console.log(branch.children[j] === target)
+
       if (branch.children[j].value === target) {istrue = true;}
        if (branch.children[j]) {
          findChild(branch.children[j])
