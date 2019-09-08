@@ -66,15 +66,35 @@ var LimitedArray = function(limit) {
   limitedArray.get = function(index, key) {
     checkLimit(index);
     for(var i=0; i < storage[index].length; i++){
-      if(storage[index][i] === key){
-        return storage[index][i]
+      console.log('inside storage')
+
+      console.log(storage)
+      console.log(storage[index])
+      //console.log(storage[index][0][0])
+      //console.log(key)
+      if(storage[index][i][0] === key){
+          console.log('inside if statement')
+        return storage[index][i][1]
       }
     }
     //return storage[index];
   };
-  limitedArray.set = function(index, value) {
+  limitedArray.set = function(index, key, value) {
     checkLimit(index);
-    storage[index].push(value);
+    var sameKey=false;
+
+    for(var i=0; i<storage[index].length; i++){
+      if(storage[index][i][0]===key){
+        sameKey=true
+        var atIndex=i
+      }
+    }
+    if(sameKey==false){
+    storage[index].push([key, value]);
+    }else{
+      storage[index][atIndex][0]=key
+      storage[index][atIndex][1]=value
+    }
 
   };
   limitedArray.each = function(callback) {
